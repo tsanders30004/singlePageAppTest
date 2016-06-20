@@ -16,37 +16,33 @@
           font-family: Verdana;
           box-sizing: border-box;
      }
-     .showIt {
-          visibility: visible;
-     }
-     .hideIt {
-          visibility: hidden;
-     }
      button {
-          margin: 1em;
+          margin-top:    1em;
+          margin-right:  1em;
      }
+     /*.container {
+          border: 1px solid gray;
+          margin: 1em 1em 1em 1em;
+     }*/
      </style>
 
      <script>
 
      var myApp = angular.module('myApp', []);
      myApp.controller('myController', function($scope){
-          $scope.myVar = '';
-          $scope.myBoolean = true;
-          $scope.myFunction = function(){
-               /* function logic here */
-          };
-          /* etc */
 
+          /* Page Constructor */
           function Page(pageId, visible) {
-               this.pageId    = pageId;
-               this.visible   = visible;
+               this.pageId    = pageId;      /* the page ID */
+               this.visible   = visible;     /* whether or not the page is visible */
           }
 
+          /* pages array.  need one array element for each page */
           var pagesArray = [
-               new Page('page1', true),
+               new Page('page1', false),
                new Page('page2', false),
-               new Page('page3', true),
+               new Page('page3', false),
+               new Page('page4', false),
           ];
 
           /* determines whether or not the page somePageId is visible or not */
@@ -60,6 +56,7 @@
                } while (i < pagesArray.length);
           };
 
+          /* makes one page visible and all others invisible */
           $scope.makeOnePageVisibile = function(somePageId) {
                var i = 0;
                for (i = 0; i < pagesArray.length; i++) {
@@ -81,9 +78,10 @@
 <body ng-app="myApp" ng-controller="myController">
      <div class="container">
 
-          <button id="button_1" type="button" class="btn btn-success">Page 1</button>
-          <button id="button_2" type="button" class="btn btn-success">Page 2</button>
-          <button id="button_3" type="button" class="btn btn-success">Page 3</button>
+          <button id="button_1" type="button" class="btn btn-success" ng-click="makeOnePageVisibile('page1')">Page 1</button>
+          <button id="button_2" type="button" class="btn btn-success" ng-click="makeOnePageVisibile('page2')">Page 2</button>
+          <button id="button_3" type="button" class="btn btn-success" ng-click="makeOnePageVisibile('page3')">Page 3</button>
+          <button id="button_4" type="button" class="btn btn-success" ng-click="makeOnePageVisibile('page4')">Page 4</button>
 
           <div id="page1" ng-show="pageIsVisible('page1')">
                <h1>Page 1</h1>
@@ -95,6 +93,10 @@
 
           <div id="page3" ng-show="pageIsVisible('page3')">
                <h1>Page 3</h1>
+          </div>
+
+          <div id="page4" ng-show="pageIsVisible('page4')">
+               <h1>Page 4</h1>
           </div>
 
      </div>    <!-- container -->
