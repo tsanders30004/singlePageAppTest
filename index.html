@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Single Page Application Test</title>
+
+     <link href="../animate.css" rel="stylesheet">
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+     <script src="../angular.js"></script>
+     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+     <style>
+     body {
+          font-family: Verdana;
+          box-sizing: border-box;
+     }
+     .showIt {
+          visibility: visible;
+     }
+     .hideIt {
+          visibility: hidden;
+     }
+     button {
+          margin: 1em;
+     }
+     </style>
+
+     <script>
+
+     var myApp = angular.module('myApp', []);
+     myApp.controller('myController', function($scope){
+          $scope.myVar = '';
+          $scope.myBoolean = true;
+          $scope.myFunction = function(){
+               /* function logic here */
+          };
+          /* etc */
+
+          $scope.visiblePage = 'page1';
+
+          $scope.page1Visible = false;
+          $scope.page2Visible = true;
+          $scope.page3Visible = false;
+     });
+
+
+
+
+</script>
+
+</head>
+<body ng-app="myApp" ng-controller="myController">
+     <div class="container">
+
+          <button id="button_1" type="button" class="btn btn-success">Page 1</button>
+          <button id="button_2" type="button" class="btn btn-success">Page 2</button>
+          <button id="button_3" type="button" class="btn btn-success">Page 3</button>
+
+          <div id="page1" ng-show="{{page1Visible}}">
+               <h1>Page 1</h1>
+          </div>
+
+          <div id="page2" ng-show="{{page2Visible}}">
+               <h1>Page 2</h1>
+          </div>
+
+          <div id="page3" ng-show="{{page3Visible}}">
+               <h1>Page 3</h1>
+          </div>
+
+     </div>    <!-- container -->
+     <!-- ****************************************************************** -->
+
+</body>
+</html>
